@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム | タスク管理ツール</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🐟タスク管理ツール🐟</h1>
+
+        <div class="user-info">
+            ようこそ、{{ username }} さん<br>
+            <a href="{{ url_for('logout') }}" class="logout-btn">ログアウト</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="notice">
+            <h2>🐟 期限が近いタスク🐟</h2>
+
+            <ul>
+                <li>設計書作成　（あと1日）</li>
+                <li>発表資料作成（あと2日）</li>
+            </ul>
+
+        </section>
+
+        <section class="menu">
+
+            <a href="{{ url_for('task_list') }}" class="menu-button">
+                タスク一覧
+            </a>
+
+            <a href="{{ url_for('calendar') }}" class="menu-button">
+                カレンダー
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>
