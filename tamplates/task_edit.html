@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タスク編集</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 
+<body>
+
+<header>
+    <h1>タスク管理ツール</h1>
+</header>
+
+<main>
+
+<h2>タスク編集</h2>
+
+<form action="/update/{{ task.id }}" method="POST" class="task-form">
+
+<label>タスク名</label>
+<input type="text" name="title" value="{{ task.title }}" required>
+
+<label>担当者</label>
+<input type="text" name="person" value="{{ task.person }}" required>
+
+<label>締切日</label>
+<input type="date" name="deadline" value="{{ task.deadline }}" required>
+
+<label>進捗</label>
+
+<select name="status">
+
+<option value="未着手" {% if task.status=="未着手" %}selected{% endif %}>未着手</option>
+
+<option value="作業中" {% if task.status=="作業中" %}selected{% endif %}>作業中</option>
+
+<option value="完了" {% if task.status=="完了" %}selected{% endif %}>完了</option>
+
+</select>
+
+<label>詳細</label>
+
+<textarea name="detail">{{ task.detail }}</textarea>
+
+<div class="button-area">
+
+<button class="save-btn">
+
+更新
+
+</button>
+
+<a href="/" class="back-btn">
+
+戻る
+
+</a>
+
+</div>
+
+</form>
+
+</main>
+
+</body>
+
+</html>
