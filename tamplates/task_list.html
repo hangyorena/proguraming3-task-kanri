@@ -16,8 +16,11 @@
 
         <button class="delete-btn">削除</button>
 
-       <a href="/delete/{{ task.id }}" class="delete-btn">
+       <a href="/delete/{{ task.id }}"
+   class="delete-btn"
+   onclick="return confirm('本当に削除しますか？')">
     削除
+</a>
 </a>
 
     </td>
