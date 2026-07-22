@@ -21,18 +21,16 @@
     <!-- 月切替 -->
     <div class="month-header">
 
-        <a href="/calendar?year={{prev_year}}&month={{prev_month}}">
-        <button>
-        &lt;
-        </button>
+        <a class="month-button"
+           href="/calendar?year={{prev_year}}&month={{prev_month}}">
+            &lt;
         </a>
 
-        <h2>{{ year }}年 {{ month }}月</h2>
+        <h2>{{year}}年 {{month}}月</h2>
 
-        <a href="/calendar?year={{next_year}}&month={{next_month}}">
-        <button>
-        &gt;
-        </button>
+        <a class="month-button"
+           href="/calendar?year={{next_year}}&month={{next_month}}">
+            &gt;
         </a>
 
     </div>
