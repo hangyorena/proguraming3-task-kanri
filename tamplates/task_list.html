@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タスク一覧</title>
 
     <link rel="stylesheet"
@@ -15,39 +15,71 @@
 
     <h1>タスク一覧</h1>
 
-    <a href="/task/add" class="back">
-        ＋ タスク追加
-    </a>
+    <div class="button-area">
+        <a href="/task/add" class="back">
+            ＋ タスク追加
+        </a>
 
-    <br><br>
+        <a href="/home" class="back">
+            ホームへ戻る
+        </a>
+    </div>
+
+    <br>
 
     <table class="calendar">
 
         <tr>
-            <th>タイトル</th>
+            <th>ID</th>
+            <th>タスク名</th>
             <th>担当者</th>
-            <th>期限</th>
+            <th>締切日</th>
             <th>進捗</th>
             <th>操作</th>
         </tr>
 
         {% for task in tasks %}
+
         <tr>
 
+            <td>{{ task.id }}</td>
+
             <td>{{ task.title }}</td>
+
             <td>{{ task.person }}</td>
+
             <td>{{ task.deadline }}</td>
-            <td>{{ task.status }}</td>
 
             <td>
 
-                <a href="/edit/{{ task.id }}"
-                   class="back">
+                {% if task.status == "未着手" %}
+                    <span class="status notyet">
+                        {{ task.status }}
+                    </span>
+
+                {% elif task.status == "作業中" %}
+                    <span class="status doing">
+                        {{ task.status }}
+                    </span>
+
+                {% else %}
+                    <span class="status done">
+                        {{ task.status }}
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="/edit/{{ task.id }}">
                     編集
                 </a>
 
+                |
+
                 <a href="/delete/{{ task.id }}"
-                   class="back"
                    onclick="return confirm('本当に削除しますか？')">
                     削除
                 </a>
@@ -55,15 +87,10 @@
             </td>
 
         </tr>
+
         {% endfor %}
 
     </table>
-
-    <br>
-
-    <a href="/home" class="back">
-        ← ホームへ戻る
-    </a>
 
 </div>
 
