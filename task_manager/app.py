@@ -25,3 +25,19 @@ def task_add():
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/delete/<int:id>")
+def delete_task(id):
+
+    # JSON読み込み
+    with open("data/tasks.json","r",encoding="utf-8") as file:
+        tasks = json.load(file)
+
+    # 指定されたID以外を残す
+    tasks = [task for task in tasks if task["id"] != id]
+
+    # 保存
+    with open("data/tasks.json","w",encoding="utf-8") as file:
+        json.dump(tasks,file,ensure_ascii=False,indent=4)
+
+    # 一覧へ戻る
+    return redirect("/")
