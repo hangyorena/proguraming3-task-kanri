@@ -3,21 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タスク追加</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<header>
-    <h1>タスク管理ツール</h1>
-</header>
+<div class="container">
 
-<main>
-
-    <h2>タスク追加</h2>
+    <h1>タスク追加</h1>
 
     <form action="/add" method="POST" class="task-form">
 
@@ -31,41 +27,30 @@
         <input type="date" name="deadline" required>
 
         <label>進捗</label>
-
         <select name="status">
-
             <option value="未着手">未着手</option>
-
             <option value="作業中">作業中</option>
-
             <option value="完了">完了</option>
-
         </select>
 
         <label>詳細</label>
+        <textarea name="detail" rows="5"></textarea>
 
-        <textarea
-            name="detail"
-            rows="5"
-            placeholder="タスクの詳細を入力してください">
-        </textarea>
+        <br><br>
 
-        <div class="button-area">
-
-            <button type="submit" class="save-btn">
-                登録
-            </button>
-
-            <a href="/" class="back-btn">
-                戻る
-            </a>
-
-        </div>
+        <button type="submit" class="back">
+            登録
+        </button>
 
     </form>
 
-</main>
+    <br>
+
+    <a href="/task" class="back">
+        ← 戻る
+    </a>
+
+</div>
 
 </body>
-
 </html>
