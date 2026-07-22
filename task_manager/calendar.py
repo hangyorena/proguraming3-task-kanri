@@ -2,38 +2,21 @@ from flask import Blueprint, render_template, abort, request
 import calendar
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 calendar_bp = Blueprint("calendar", __name__)
 
 DATA_FILE = os.path.join("data", "tasks.json")
 
-
-# -------------------------
 # JSON読込
-# -------------------------
 def load_tasks():
-
     if not os.path.exists(DATA_FILE):
         return []
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
-# -------------------------
-# 年月の取得
-# -------------------------
-def get_year_month():
-
-    today = datetime.today()
-
-    return today.year, today.month
-
-
-# -------------------------
-# 前月・翌月計算
-# -------------------------
+# 前月・翌月
 def get_prev_next(year, month):
 
     if month == 1:
@@ -52,10 +35,7 @@ def get_prev_next(year, month):
 
     return prev_year, prev_month, next_year, next_month
 
-
-# -------------------------
-# 通知作成
-# -------------------------
+# 通知
 def create_notifications(tasks):
 
     today = datetime.today().date()
@@ -81,37 +61,32 @@ def create_notifications(tasks):
 
     return notice
 
-
-# -------------------------
 # カレンダー画面
-# -------------------------
 @calendar_bp.route("/calendar")
 def calendar_view():
 
-    today = datetime.today()
+    now = datetime.today()
 
     year = request.args.get(
         "year",
-        default=today.year,
+        default=now.year,
         type=int
     )
 
     month = request.args.get(
         "month",
-        default=today.month,
+        default=now.month,
         type=int
     )
-    
+
     cal = calendar.monthcalendar(year, month)
 
     tasks = load_tasks()
 
     notices = create_notifications(tasks)
 
-    today = datetime.today()
-
-    if today.year == year and today.month == month:
-        today = today.day
+    if now.year == year and now.month == month:
+        today_day = now.day
     else:
         today_day = -1
 
@@ -121,43 +96,26 @@ def calendar_view():
     )
 
     return render_template(
-
         "calendar.html",
-
         year=year,
         month=month,
-
         cal=cal,
-
         tasks=tasks,
-
-        today=today,
-
+        today=today_day,
         notices=notices,
-
         prev_year=prev_y,
         prev_month=prev_m,
-
         next_year=next_y,
         next_month=next_m
     )
 
-
-# -------------------------
 # タスク詳細
-# -------------------------
 @calendar_bp.route("/task/<int:task_id>")
 def task_detail(task_id):
 
     tasks = load_tasks()
 
-    task = None
-
-    for t in tasks:
-
-        if t["id"] == task_id:
-            task = t
-            break
+    task = next((t for t in tasks if t["id"] == task_id), None)
 
     if task is None:
         abort(404)
