@@ -1,23 +1,23 @@
 [
     {
         "id": 1,
-        "username": "admin",
-        "password": "admin123",
+        "username": "rena",
+        "password": "0525",
         "name": "管理者",
         "role": "admin"
     },
     {
         "id": 2,
-        "username": "member1",
-        "password": "member123",
-        "name": "山田 太郎",
+        "username": "kaede",
+        "password": "1009",
+        "name": "かえで",
         "role": "member"
     },
     {
         "id": 3,
-        "username": "member2",
-        "password": "member123",
-        "name": "佐藤 花子",
+        "username": "nodoka",
+        "password": "0128",
+        "name": "のどか",
         "role": "member"
     }
 ]
