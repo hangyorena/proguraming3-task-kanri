@@ -5,39 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タスク管理ツール - ログイン</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style_login.css') }}">
 </head>
+
 <body>
 
     <div class="login-container">
 
         <h1>🐟タスク管理ツール🐟</h1>
-        <h2>🐟ログイン🐟</h2>
+        <h2>ログイン</h2>
 
         <form action="/login" method="post">
-            <input type="text" name="username">
-            <input type="password" name="password">
-            <button type="submit">ログイン</button>
-        </form>
 
             <div class="input-group">
                 <label for="username">ユーザー名</label>
-                <input type="text" id="username" name="username" placeholder="ユーザー名を入力">
+                <input type="text"
+                       id="username"
+                       name="username"
+                       required>
             </div>
 
             <div class="input-group">
                 <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" placeholder="パスワードを入力">
+                <input type="password"
+                       id="password"
+                       name="password"
+                       required>
             </div>
 
             <button type="submit">ログイン</button>
 
         </form>
 
-        <!-- エラーメッセージ表示 -->
-        <p class="error-message">
-            <!-- ログイン失敗時に表示 -->
-        </p>
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
 
     </div>
 
