@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 import calendar
 import json
 import os
@@ -88,15 +88,32 @@ def create_notifications(tasks):
 @calendar_bp.route("/calendar")
 def calendar_view():
 
-    year, month = get_year_month()
+    today = datetime.today()
 
+    year = request.args.get(
+        "year",
+        default=today.year,
+        type=int
+    )
+
+    month = request.args.get(
+        "month",
+        default=today.month,
+        type=int
+    )
+    
     cal = calendar.monthcalendar(year, month)
 
     tasks = load_tasks()
 
     notices = create_notifications(tasks)
 
-    today = datetime.today().day
+    today = datetime.today()
+
+    if today.year == year and today.month == month:
+        today = today.day
+    else:
+        today_day = -1
 
     prev_y, prev_m, next_y, next_m = get_prev_next(
         year,
