@@ -52,3 +52,25 @@ def edit_task(id):
     task = next((t for t in tasks if t["id"] == id), None)
 
     return render_template("task_edit.html", task=task)
+    @app.route("/update/<int:id>", methods=["POST"])
+def update_task(id):
+
+    with open("data/tasks.json", "r", encoding="utf-8") as file:
+        tasks = json.load(file)
+
+    for task in tasks:
+
+        if task["id"] == id:
+
+            task["title"] = request.form["title"]
+            task["person"] = request.form["person"]
+            task["deadline"] = request.form["deadline"]
+            task["status"] = request.form["status"]
+            task["detail"] = request.form["detail"]
+
+            break
+
+    with open("data/tasks.json", "w", encoding="utf-8") as file:
+        json.dump(tasks, file, ensure_ascii=False, indent=4)
+
+    return redirect("/")
