@@ -1,1 +1,23 @@
-
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "password": "admin123",
+        "name": "管理者",
+        "role": "admin"
+    },
+    {
+        "id": 2,
+        "username": "member1",
+        "password": "member123",
+        "name": "山田 太郎",
+        "role": "member"
+    },
+    {
+        "id": 3,
+        "username": "member2",
+        "password": "member123",
+        "name": "佐藤 花子",
+        "role": "member"
+    }
+]
