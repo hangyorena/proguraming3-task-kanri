@@ -1,108 +1,78 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク詳細</title>
 
-<meta charset="UTF-8">
-
-<title>タスク詳細</title>
-
-<link rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}">
-
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>タスク詳細</h1>
+    <h1>タスク詳細</h1>
 
-<div class="detail-box">
+    <div class="detail-box">
 
-<h2>{{ task.title }}</h2>
+        <table>
 
-<table>
+            <tr>
+                <th>タスク名</th>
+                <td>{{ task.title }}</td>
+            </tr>
 
-<tr>
+            <tr>
+                <th>担当者</th>
+                <td>{{ task.person }}</td>
+            </tr>
 
-<th>担当者</th>
+            <tr>
+                <th>期限</th>
+                <td>{{ task.deadline }}</td>
+            </tr>
 
-<td>{{ task.person }}</td>
+            <tr>
+                <th>進捗</th>
+                <td>
 
-</tr>
+                    {% if task.status == "未着手" %}
+                        <span class="status notyet">
+                            {{ task.status }}
+                        </span>
 
-<tr>
+                    {% elif task.status == "作業中" %}
+                        <span class="status doing">
+                            {{ task.status }}
+                        </span>
 
-<th>期限</th>
+                    {% else %}
+                        <span class="status done">
+                            {{ task.status }}
+                        </span>
+                    {% endif %}
 
-<td>{{ task.deadline }}</td>
+                </td>
+            </tr>
 
-</tr>
+            <tr>
+                <th>詳細</th>
+                <td>{{ task.detail }}</td>
+            </tr>
 
-<tr>
+        </table>
 
-<th>進捗</th>
+    </div>
 
-<td>
+    <br>
 
-{% if task.status == "未着手" %}
-
-<span class="status notyet">
-
-{{ task.status }}
-
-</span>
-
-{% elif task.status == "作業中" %}
-
-<span class="status doing">
-
-{{ task.status }}
-
-</span>
-
-{% else %}
-
-<span class="status done">
-
-{{ task.status }}
-
-</span>
-
-{% endif %}
-
-</td>
-
-</tr>
-
-<tr>
-
-<th>内容</th>
-
-<td>
-
-{{ task.description }}
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-<br>
-
-<a class="back" href="/calendar">
-
-← カレンダーへ戻る
-
-</a>
+    <a href="/calendar" class="back">
+        ← カレンダーへ戻る
+    </a>
 
 </div>
 
 </body>
-
 </html>
