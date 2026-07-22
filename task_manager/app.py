@@ -1,7 +1,7 @@
 from flask import Flask
 from auth import auth_bp
 from task import task_bp
-from calendar import calendar_bp
+from calendar_view import calendar_bp
 
 app = Flask(__name__)
 app.secret_key = "task_manager_secret"
