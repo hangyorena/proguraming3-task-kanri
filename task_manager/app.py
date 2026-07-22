@@ -41,3 +41,14 @@ def delete_task(id):
 
     # 一覧へ戻る
     return redirect("/")
+@app.route("/edit/<int:id>")
+def edit_task(id):
+
+    # JSON読み込み
+    with open("data/tasks.json", "r", encoding="utf-8") as file:
+        tasks = json.load(file)
+
+    # 編集するタスクを探す
+    task = next((t for t in tasks if t["id"] == id), None)
+
+    return render_template("task_edit.html", task=task)
