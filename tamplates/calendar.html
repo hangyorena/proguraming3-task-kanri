@@ -21,11 +21,19 @@
     <!-- 月切替 -->
     <div class="month-header">
 
-        <button>&lt;</button>
+        <a href="/calendar?year={{prev_year}}&month={{prev_month}}">
+        <button>
+        &lt;
+        </button>
+        </a>
 
         <h2>{{ year }}年 {{ month }}月</h2>
 
-        <button>&gt;</button>
+        <a href="/calendar?year={{next_year}}&month={{next_month}}">
+        <button>
+        &gt;
+        </button>
+        </a>
 
     </div>
 
