@@ -1,300 +1,309 @@
 /* ==========================
-   全体
+   全体設定
 ========================== */
 
-*{
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+/* ==========================
+   月表示
+========================== */
+
+.month-header {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 20px;
+}
+
+.month-button {
+
+    background: #4CAF50;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.month-button:hover {
+
+    background: #388e3c;
+
+}
+
+/* ==========================
+   通知
+========================== */
+
+.notice {
+
+    background: white;
+
+    border-left: 6px solid orange;
+
+    padding: 15px;
+
+    margin-bottom: 25px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
+}
+
+.notice ul{
+
     margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Yu Gothic","Meiryo",sans-serif;
-}
 
-body{
-    background:#f4f6f9;
-}
-
-/* ==========================
-   ヘッダー
-========================== */
-
-header{
-    background:#2c7be5;
-    color:white;
-    padding:20px;
-}
-
-header h1{
-    text-align:center;
-}
-
-/* ==========================
-   メイン
-========================== */
-
-main{
-    width:90%;
-    max-width:1100px;
-    margin:40px auto;
-}
-
-/* ==========================
-   上部
-========================== */
-
-.top-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.top-bar h2{
-    color:#333;
-}
-
-/* ==========================
-   ボタン
-========================== */
-
-.add-btn{
-
-    background:#28a745;
-    color:white;
-
-    text-decoration:none;
-
-    padding:10px 18px;
-
-    border-radius:5px;
-
-    transition:0.3s;
-
-}
-
-.add-btn:hover{
-
-    background:#208638;
+    padding-left:20px;
 
 }
 
 /* ==========================
-   テーブル
+   カレンダー
 ========================== */
 
-table{
+.calendar {
 
-    width:100%;
+    width: 100%;
 
-    border-collapse:collapse;
+    border-collapse: collapse;
 
-    background:white;
+    background: white;
 
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-
-}
-
-th{
-
-    background:#2c7be5;
-
-    color:white;
-
-    padding:15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
 
 }
 
-td{
+.calendar th {
 
-    padding:15px;
+    background: #4CAF50;
 
-    text-align:center;
+    color: white;
 
-    border-bottom:1px solid #ddd;
+    padding: 10px;
 
 }
 
-tr:hover{
+.calendar td {
 
-    background:#f8f9fa;
+    width: 14%;
+
+    height: 120px;
+
+    border: 1px solid #ccc;
+
+    vertical-align: top;
+
+    padding: 5px;
+
+}
+
+.sun {
+
+    color: red;
+
+}
+
+.sat {
+
+    color: blue;
 
 }
 
 /* ==========================
-   編集ボタン
+   今日の日付
 ========================== */
 
-.edit-btn{
+.today {
 
-    background:#ffc107;
+    background: gold;
 
-    color:#333;
+    border-radius: 50%;
 
-    border:none;
+    width: 30px;
 
-    padding:8px 14px;
+    height: 30px;
 
-    border-radius:5px;
+    text-align: center;
 
-    cursor:pointer;
+    line-height: 30px;
 
-    margin-right:5px;
-
-}
-
-.edit-btn:hover{
-
-    background:#e0a800;
+    font-weight: bold;
 
 }
 
 /* ==========================
-   削除ボタン
+   タスク
 ========================== */
 
-.delete-btn{
+.task {
 
-    background:#dc3545;
+    background: #b3e5fc;
 
-    color:white;
+    margin-top: 5px;
 
-    border:none;
+    padding: 5px;
 
-    padding:8px 14px;
+    border-radius: 6px;
 
-    border-radius:5px;
-
-    cursor:pointer;
+    font-size: 13px;
 
 }
 
-.delete-btn:hover{
+.task a {
 
-    background:#bb2d3b;
+    text-decoration: none;
+
+    color: black;
+
+}
+
+.task:hover {
+
+    background: #81d4fa;
 
 }
 
 /* ==========================
-   スマホ対応
+   詳細画面
 ========================== */
 
-@media screen and (max-width:700px){
+.detail-box {
 
-.top-bar{
+    background: white;
 
-    flex-direction:column;
+    padding: 20px;
 
-    gap:15px;
+    border-radius: 10px;
 
-}
-
-table{
-
-    font-size:14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
 
 }
 
-th,td{
+.detail-box table {
 
-    padding:10px;
+    width: 100%;
+
+    border-collapse: collapse;
 
 }
 
+.detail-box th {
+
+    width: 20%;
+
+    background: #eeeeee;
+
+    text-align: left;
+
+    padding: 10px;
+
 }
+
+.detail-box td {
+
+    padding: 10px;
+
+    border-bottom: 1px solid #ddd;
+
+}
+
 /* ==========================
-   タスク追加フォーム
+   進捗表示
 ========================== */
 
-.task-form{
+.status {
 
-    background:white;
+    color: white;
 
-    padding:30px;
+    padding: 5px 10px;
 
-    border-radius:10px;
+    border-radius: 6px;
 
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-
-}
-
-.task-form label{
-
-    display:block;
-
-    margin-top:18px;
-
-    margin-bottom:8px;
-
-    font-weight:bold;
+    font-size: 14px;
 
 }
 
-.task-form input,
-.task-form select,
-.task-form textarea{
+.notyet {
 
-    width:100%;
-
-    padding:10px;
-
-    border:1px solid #ccc;
-
-    border-radius:5px;
-
-    font-size:16px;
+    background: gray;
 
 }
 
-.task-form textarea{
+.doing {
 
-    resize:none;
-
-}
-
-.button-area{
-
-    margin-top:25px;
+    background: orange;
 
 }
 
-.save-btn{
+.done {
 
-    background:#28a745;
-
-    color:white;
-
-    border:none;
-
-    padding:10px 18px;
-
-    border-radius:5px;
-
-    cursor:pointer;
-
-    margin-right:10px;
+    background: green;
 
 }
 
-.save-btn:hover{
+/* ==========================
+   戻るボタン
+========================== */
 
-    background:#208638;
+.back {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    background: #4CAF50;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
 
 }
 
-.back-btn{
+.back:hover {
 
-    background:#6c757d;
+    background: #388e3c;
 
-    color:white;
-
-    padding:10px 18px;
-
-    border-radius:5px;
-
-    text-decoration:none;
-
-}
-
-.back-btn:hover{
-
-    background:#555;
 }
