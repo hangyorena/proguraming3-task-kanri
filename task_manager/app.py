@@ -18,7 +18,10 @@ def task_list():
         "task_list.html",
         tasks=tasks
     )
+@app.route("/task/add")
+def task_add():
 
+    return render_template("task_add.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
