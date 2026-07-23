@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タスク詳細</title>
+    <title>タスク詳細 | タスク管理ツール</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -17,12 +17,9 @@
 
     <div class="detail-box">
 
-        <table>
+        <h2>{{ task.title }}</h2>
 
-            <tr>
-                <th>タスク名</th>
-                <td>{{ task.title }}</td>
-            </tr>
+        <table>
 
             <tr>
                 <th>担当者</th>
@@ -30,7 +27,7 @@
             </tr>
 
             <tr>
-                <th>期限</th>
+                <th>締切日</th>
                 <td>{{ task.deadline }}</td>
             </tr>
 
@@ -52,6 +49,7 @@
                         <span class="status done">
                             {{ task.status }}
                         </span>
+
                     {% endif %}
 
                 </td>
@@ -68,8 +66,14 @@
 
     <br>
 
-    <a href="/calendar" class="back">
-        ← カレンダーへ戻る
+    <a class="back"
+       href="{{ url_for('task.task_list') }}">
+        タスク一覧へ戻る
+    </a>
+
+    <a class="back"
+       href="{{ url_for('calendar.calendar_view') }}">
+        カレンダーへ戻る
     </a>
 
 </div>
