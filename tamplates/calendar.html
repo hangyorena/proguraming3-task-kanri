@@ -2,35 +2,32 @@
 <html lang="ja">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <title>タスクカレンダー</title>
+    <title>カレンダー | タスク管理ツール</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>タスク管理ツール</h1>
+    <h1>🐟 タスク管理ツール 🐟</h1>
 
     <!-- 月切替 -->
     <div class="month-header">
 
         <a class="month-button"
-           href="/calendar?year={{prev_year}}&month={{prev_month}}">
-            &lt;
+           href="{{ url_for('calendar.calendar_view', year=prev_year, month=prev_month) }}">
+            ＜
         </a>
 
-        <h2>{{year}}年 {{month}}月</h2>
+        <h2>{{ year }}年 {{ month }}月</h2>
 
         <a class="month-button"
-           href="/calendar?year={{next_year}}&month={{next_month}}">
-            &gt;
+           href="{{ url_for('calendar.calendar_view', year=next_year, month=next_month) }}">
+            ＞
         </a>
 
     </div>
@@ -42,25 +39,25 @@
 
         {% if notices %}
 
-            <ul>
+        <ul>
 
             {% for task in notices %}
 
-                <li>
+            <li>
 
-                    {{ task.title }}
+                {{ task.title }}
 
-                    （{{ task.notice }}）
+                （{{ task.notice }}）
 
-                </li>
+            </li>
 
             {% endfor %}
 
-            </ul>
+        </ul>
 
         {% else %}
 
-            <p>通知はありません。</p>
+        <p>通知はありません。</p>
 
         {% endif %}
 
@@ -114,7 +111,7 @@
 
                         <div class="task">
 
-                            <a href="/task/{{ task.id }}">
+                            <a href="{{ url_for('calendar.task_detail', task_id=task.id) }}">
 
                                 {{ task.title }}
 
@@ -138,8 +135,14 @@
 
     </table>
 
+    <br>
+
+    <a class="back"
+       href="{{ url_for('auth.home') }}">
+        ホームへ戻る
+    </a>
+
 </div>
 
 </body>
-
 </html>
