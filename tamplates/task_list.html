@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タスク一覧</title>
+    <title>タスク一覧 | タスク管理ツール</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -15,25 +15,24 @@
 
     <h1>タスク一覧</h1>
 
-    <div class="button-area">
-        <a href="/task/add" class="back">
+    <p>
+        <a class="back"
+           href="{{ url_for('task.task_add') }}">
             ＋ タスク追加
         </a>
 
-        <a href="/home" class="back">
+        <a class="back"
+           href="{{ url_for('auth.home') }}">
             ホームへ戻る
         </a>
-    </div>
-
-    <br>
+    </p>
 
     <table class="calendar">
 
         <tr>
-            <th>ID</th>
-            <th>タスク名</th>
+            <th>タイトル</th>
             <th>担当者</th>
-            <th>締切日</th>
+            <th>締切</th>
             <th>進捗</th>
             <th>操作</th>
         </tr>
@@ -42,47 +41,34 @@
 
         <tr>
 
-            <td>{{ task.id }}</td>
-
             <td>{{ task.title }}</td>
 
             <td>{{ task.person }}</td>
 
             <td>{{ task.deadline }}</td>
 
-            <td>
-
-                {% if task.status == "未着手" %}
-                    <span class="status notyet">
-                        {{ task.status }}
-                    </span>
-
-                {% elif task.status == "作業中" %}
-                    <span class="status doing">
-                        {{ task.status }}
-                    </span>
-
-                {% else %}
-                    <span class="status done">
-                        {{ task.status }}
-                    </span>
-
-                {% endif %}
-
-            </td>
+            <td>{{ task.status }}</td>
 
             <td>
 
-                <a href="/edit/{{ task.id }}">
+                <a href="{{ url_for('calendar.task_detail', task_id=task.id) }}">
+                    詳細
+                </a>
+
+                |
+
+                <a href="{{ url_for('task.edit_task', id=task.id) }}">
                     編集
                 </a>
 
                 |
 
-                <a href="/delete/{{ task.id }}"
-                   onclick="return confirm('本当に削除しますか？')">
+                {% if session["role"] == "admin" %}
+                <a href="{{ url_for('task.delete_task', id=task.id) }}"
+                onclick="return confirm('本当に削除しますか？')">
                     削除
                 </a>
+                {% endif %}
 
             </td>
 
