@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タスク管理ツール - ログイン</title>
+    <title>ログイン | タスク管理ツール</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style_login.css') }}">
@@ -11,38 +11,42 @@
 
 <body>
 
-    <div class="login-container">
+<div class="login-container">
 
-        <h1>🐟タスク管理ツール🐟</h1>
-        <h2>ログイン</h2>
+    <h1>🐟 タスク管理ツール 🐟</h1>
+    <h2>ログイン</h2>
 
-        <form action="/login" method="post">
+    <form action="{{ url_for('auth.login_check') }}" method="POST">
 
-            <div class="input-group">
-                <label for="username">ユーザー名</label>
-                <input type="text"
-                       id="username"
-                       name="username"
-                       required>
-            </div>
+        <div class="input-group">
+            <label>ユーザーID</label>
+            <input
+                type="text"
+                name="username"
+                placeholder="ユーザーIDを入力"
+                required>
+        </div>
 
-            <div class="input-group">
-                <label for="password">パスワード</label>
-                <input type="password"
-                       id="password"
-                       name="password"
-                       required>
-            </div>
+        <div class="input-group">
+            <label>パスワード</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="パスワードを入力"
+                required>
+        </div>
 
-            <button type="submit">ログイン</button>
+        <button type="submit">
+            ログイン
+        </button>
 
-        </form>
+    </form>
 
-        {% if error %}
-            <p class="error-message">{{ error }}</p>
-        {% endif %}
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
 
-    </div>
+</div>
 
 </body>
 </html>
