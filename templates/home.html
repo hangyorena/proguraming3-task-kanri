@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホーム | タスク管理ツール</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style_login.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🐟 タスク管理ツール 🐟</h1>
+
+    <div class="user-info">
+        ようこそ、{{ username }} さん<br>
+
+        <a href="{{ url_for('auth.logout') }}" class="logout-btn">
+            ログアウト
+        </a>
+    </div>
+
+</header>
+
+<main>
+
+    <!-- 期限が近いタスク -->
+    <section class="notice">
+
+        <h2>📢 期限が近いタスク</h2>
+
+        {% if notices %}
+
+        <ul>
+
+            {% for task in notices %}
+
+            <li>
+                <strong>{{ task.title }}</strong>
+                （担当：{{ task.person }}）
+                【{{ task.notice }}】
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <p>期限が近いタスクはありません。</p>
+
+        {% endif %}
+
+    </section>
+
+    <!-- メニュー -->
+    <section class="menu">
+
+        <a href="{{ url_for('task.task_list') }}"
+           class="menu-button">
+            タスク一覧
+        </a>
+
+        <a href="{{ url_for('calendar.calendar_view') }}"
+           class="menu-button">
+            カレンダー
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+</html>
