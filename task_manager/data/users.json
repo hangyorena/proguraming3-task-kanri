@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "username": "rena",
+        "password": "0525",
+        "name": "管理者",
+        "role": "admin"
+    },
+    {
+        "id": 2,
+        "username": "kaede",
+        "password": "1009",
+        "name": "かえで",
+        "role": "member"
+    },
+    {
+        "id": 3,
+        "username": "nodoka",
+        "password": "0128",
+        "name": "のどか",
+        "role": "member"
+    }
+]

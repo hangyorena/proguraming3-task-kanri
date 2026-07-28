@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>タスク追加 | タスク管理ツール</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>タスク追加</h1>
+
+    <form action="{{ url_for('task.add_task') }}"
+          method="POST"
+          class="task-form">
+
+        <label>タスク名</label>
+        <input
+            type="text"
+            name="title"
+            required>
+
+        <label>担当者</label>
+        <input
+            type="text"
+            name="person"
+            required>
+
+        <label>締切日</label>
+        <input
+            type="date"
+            name="deadline"
+            required>
+
+        <label>進捗</label>
+
+        <select name="status">
+
+            <option value="未着手">未着手</option>
+            <option value="作業中">作業中</option>
+            <option value="完了">完了</option>
+
+        </select>
+
+        <label>詳細</label>
+
+        <textarea
+            name="detail"
+            rows="5"
+            placeholder="タスク内容を入力してください"></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            登録
+        </button>
+
+        <a class="back"
+           href="{{ url_for('task.task_list') }}">
+            戻る
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

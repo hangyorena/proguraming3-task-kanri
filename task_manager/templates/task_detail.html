@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>タスク詳細 | タスク管理ツール</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>タスク詳細</h1>
+
+    <div class="detail-box">
+
+        <h2>{{ task.title }}</h2>
+
+        <table>
+
+            <tr>
+                <th>担当者</th>
+                <td>{{ task.person }}</td>
+            </tr>
+
+            <tr>
+                <th>締切日</th>
+                <td>{{ task.deadline }}</td>
+            </tr>
+
+            <tr>
+                <th>進捗</th>
+                <td>
+
+                    {% if task.status == "未着手" %}
+                        <span class="status notyet">
+                            {{ task.status }}
+                        </span>
+
+                    {% elif task.status == "作業中" %}
+                        <span class="status doing">
+                            {{ task.status }}
+                        </span>
+
+                    {% else %}
+                        <span class="status done">
+                            {{ task.status }}
+                        </span>
+
+                    {% endif %}
+
+                </td>
+            </tr>
+
+            <tr>
+                <th>詳細</th>
+                <td>{{ task.detail }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <a class="back"
+       href="{{ url_for('task.task_list') }}">
+        タスク一覧へ戻る
+    </a>
+
+    <a class="back"
+       href="{{ url_for('calendar.calendar_view') }}">
+        カレンダーへ戻る
+    </a>
+
+</div>
+
+</body>
+</html>
